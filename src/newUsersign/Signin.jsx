@@ -1,28 +1,54 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {auth} from "../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import Hero from "../componenet/hero/Hero";
 
 function Signin() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("")
   const [error, setError] = useState("");
   const [role, setRole] = useState("");
+  const [success, setSuccess] = useState("");
   const [step, setStep] = useState("select");
+  const navigate = useNavigate();  
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-    if (!role) {
-      setError("Please select a role");
-      return;
-    }
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
+  if (password !== confirmPassword) {
+    setError("Passwords do not match.");
+    return;
+  }
+
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    const user = auth.currentUser;
+    console.log("User Registered Successfully!", user);
+    
+    setSuccess("User registered successfully!");
     setError("");
-    alert(`Form submitted successfully as a ${role}!`);
-  };
+
+    // Redirect to homepage after 1 second
+    setTimeout(() => {
+      navigate("/Hero");
+    }, 1000);
+
+  } catch (error) {
+    console.log(error.code, error.message);
+    if (error.code === "auth/email-already-in-use") {
+      setError("This email is already registered. Please try logging in.");
+    } else {
+      setError(error.message);
+    }
+    setSuccess("");
+  }
+};
+
 
   const handleGoogleSignIn = () => {
     alert("Google Sign-In clicked (you can integrate OAuth logic here)");
@@ -89,6 +115,8 @@ function Signin() {
                   id="firstName"
                   name="firstName"
                   type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   required
                   autoComplete="given-name"
                   className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-base text-gray-900 shadow focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
@@ -102,6 +130,8 @@ function Signin() {
                   id="lastName"
                   name="lastName"
                   type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   required
                   autoComplete="family-name"
                   className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-base text-gray-900 shadow focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
@@ -115,6 +145,8 @@ function Signin() {
                   id="email"
                   name="email"
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   autoComplete="email"
                   className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-base text-gray-900 shadow focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
