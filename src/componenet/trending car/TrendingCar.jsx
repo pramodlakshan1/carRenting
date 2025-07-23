@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Correct hook
+
 
 const cars = [
   {
@@ -32,6 +34,7 @@ const cars = [
 ];
 
 function TrendingCar() {
+  const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -85,6 +88,10 @@ function TrendingCar() {
       }
       setIsTransitioning(false);
     }, 700);
+  };
+
+  const handleAllCar = () => {
+    navigate("/allVehicle"); // ✅ correct route navigation
   };
 
   const getCardStyle = (index) => {
@@ -171,7 +178,7 @@ function TrendingCar() {
                       </p>
                     </div>
                   </div>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform group-hover:-translate-y-2 group-hover:shadow-xl">
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform group-hover:-translate-y-2 group-hover:shadow-xl"onClick={""}>
                     Rent Now
                   </button>
                 </div>
@@ -182,7 +189,8 @@ function TrendingCar() {
       </div>
 
       <div className="w-full flex justify-end mt-4 md:mt-8">
-        <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 md:py-3 md:px-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+        <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 md:py-3 md:px-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-1
+          " onClick={handleAllCar}>
           View All Vehicles →
         </button>
       </div>

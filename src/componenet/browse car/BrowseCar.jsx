@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom"; // ✅ Correct hook
+
 
 const cars = [
   {
@@ -54,6 +56,7 @@ const cars = [
 ];
 
 export default function BrowseCar() {
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const carsPerPage = 6;
 
@@ -61,7 +64,12 @@ export default function BrowseCar() {
   const indexOfFirstCar = indexOfLastCar - carsPerPage;
   const currentCars = cars.slice(indexOfFirstCar, indexOfLastCar);
 
+
   const totalPages = Math.ceil(cars.length / carsPerPage);
+
+  const handleRentingConfirm = () => {
+    navigate("/vehicleDetail")
+  }
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
@@ -90,7 +98,10 @@ export default function BrowseCar() {
                 </span>
                 <a
                   href="#"
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+                   focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600
+                    dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    onClick={handleRentingConfirm}
                 >
                   Rent Now
                 </a>

@@ -1,6 +1,14 @@
 import React from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Hero() {
+
+  const navigate = useNavigate();
+
+  const handleAllCar = () =>{
+    navigate("/allVehicle")
+  }
+
   return (
     <div className="bg-white dark:bg-gray-900 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -21,7 +29,9 @@ export default function Hero() {
               >
                 Book Now
               </a>
-              <a href="#" className="text-sm font-semibold text-gray-900 dark:text-white">
+              <a href="#" className="text-sm font-semibold text-gray-900 dark:text-white"
+                onClick={handleAllCar}
+              >
                 Browse Cars <span aria-hidden="true">→</span>
               </a>
             </div>

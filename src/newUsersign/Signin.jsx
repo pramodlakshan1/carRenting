@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {auth} from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import Hero from "../componenet/hero/Hero";
+// import Hero from "../componenet/hero/Hero";
 
 function Signin() {
   const [firstName, setFirstName] = useState("");
