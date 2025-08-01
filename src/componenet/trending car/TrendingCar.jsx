@@ -178,7 +178,7 @@ function TrendingCar() {
                       </p>
                     </div>
                   </div>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform group-hover:-translate-y-2 group-hover:shadow-xl"onClick={""}>
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform group-hover:-translate-y-2 group-hover:shadow-xl">
                     Rent Now
                   </button>
                 </div>

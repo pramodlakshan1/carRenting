@@ -9,6 +9,7 @@ import Hero from "./componenet/hero/Hero";
 import Navbar from "./componenet/navbar/Navbar";
 import RentingConfirm from "./componenet/renting confirm page/RentingConfirm";
 import InitialPage from "./pages/InitialPage";
+import AllCar from "./pages/AllCar";
 
 
 function app() {
@@ -22,8 +23,8 @@ function app() {
                 <Route path="/login" element={<Logging />} />
                 <Route path = "/sign" element={<Signin/>}/>
                 <Route path="/hero" element={<Hero/>}/>
-                <Route path = "/allVehicle" element={<BrowseCar/>}/>
-                <Route path="/vehicleDetail" element={<RentingConfirm/>} />
+                <Route path = "/allVehicle" element={<AllCar/>}/>
+                <Route path="/vehicleDetail/:carId" element={<RentingConfirm/>} />
             </Routes> 
         </Router>
     );

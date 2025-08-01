@@ -22,8 +22,8 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="absolute top-0 left-0 w-full z-50 bg-white/10 backdrop-blur-md">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <nav className="fixed top-0 left-0 w-3/4 z-50 dark:bg-gray-800 backdrop-blur-md rounded-3xl m-1 ml-10 ">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2 px-4 p-4">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img
             src="https://flowbite.com/docs/images/logo.svg"
